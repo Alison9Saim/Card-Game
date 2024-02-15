@@ -258,4 +258,4 @@ app.post('/', async (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () => console.log("App started"))
+app.listen(PORT, () => console.log("App started on " + {PORT}))
