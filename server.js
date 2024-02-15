@@ -1,5 +1,4 @@
 var express = require('express');
-
 require('dotenv').config()
 var axios = require('axios');
 var bodyParser = require('body-parser');
@@ -20,9 +19,7 @@ var currentIndex = 0;
 
 var questions = [];
 
-
 const uri = "mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.MONGO_PASSWORD+"@cluster0.j2vmca7.mongodb.net/";
-//const uri  = "mongodb+srv://alison:o65Xnxr8atd6Uqka@cluster0.j2vmca7.mongodb.net/";
 const client = new MongoClient(uri);
 
 
@@ -237,10 +234,6 @@ app.post('/', async (req, res) => {
 
                     res.setHeader('Content-Type', 'text/html');
                     res.render('gameover', {something: score, message: rand_gameover_message[0].message_text});
-
-
-                    //res.setHeader('Content-Type', 'text/html');
-                    //res.render('gameover', {something: score});
 
                 } catch (e) {
                     console.error(e);
