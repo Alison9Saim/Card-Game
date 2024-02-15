@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 const {MongoClient, ObjectId} = require("mongodb");
 //var mongoose = require('mongoose');
 var app = express();
-
+const PORT = process.env.PORT || 3000;
 
 
 app.use(express.static('public'));
@@ -258,4 +258,4 @@ app.post('/', async (req, res) => {
 });
 
 
-app.listen(3000, () => console.log("App started"))
+app.listen(process.env.PORT, () => console.log("App started"))
