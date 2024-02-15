@@ -1,56 +1,66 @@
 console.log('Client-side code running');
-
+/*
 const button = document.getElementById('myButton');
 button.addEventListener('click', function(e) {
   console.log('button was clicked');
 });
+*/
 
 
 
 //button1 or button 2 is clicked
 const button1 = document.getElementById('bone');
 const button2 = document.getElementById('btwo');
+const postBtn = document.getElementById('myButton');
+const inputData = document.getElementById('answer');
 
-button1.addEventListener('click', function(e){
-  console.log('button one was clicked');
-  document.getElementById("item").innerHTML = "test 1"; 
+const q_id = document.getElementById("");
+
+const baseUrl = "http://localhost:3000/"
 
 
-  fetch('/', {method: 'GET'})
+button1.addEventListener("click", getInfoA);
 
-  .then(function(response) {
-    if(response.ok) {
-      console.log('Click was recorded');
-      return;
-    }
-    throw new Error('Request failed.');
+  async function getInfoA(e){
+    e.preventDefault();
+    const res = await fetch(baseUrl, 
+    {
+      method: "GET"
+    })
+
+    inputData.value = "test a";
+    console.log(res);
+  }
+
+
+
+button2.addEventListener("click", getInfoB);
+
+async function getInfoB(e){
+  e.preventDefault();
+  const res = await fetch(baseUrl, 
+  {
+    method: "GET"
   })
-  .catch(function(error) {
-    console.log(error);
-  });
 
-});
-
-button2.addEventListener('click', function(e){
-  console.log('button two was clicked');
-  document.getElementById("item").innerHTML = "test 2"; 
+  inputData.value = "test b";
+  console.log(res);
+}
 
 
+postBtn.addEventListener("click", postInfo);
 
-  //function testServerCall(){
-  //  debugger;
-    $.ajax({
-        type:"GET",
-        url:"/",
-        data:{ 
-        },
-        success:function(){
-          console.log('success');
-        },
-        error:function(){
-          console.log('error');
-        }
-      });
-  //
+async function postInfo(e){
+  e.preventDefault();
+  const res = await fetch(baseUrl /*+ "james?key=Hello"*/, 
+  {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      parcel: inputData.value
+    })
+  })
+}
 
-});
+
+
