@@ -4,12 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/Content/app.css" />
+
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 <body>
+    <div class="container" style="text-align: center; padding-top: 200px;">
+        <h1>Game Over, You Lose</h1>
 
-    <h1>Game Over, You Lose</h1>
+        <h2>Score: <%= something %></h2>
+    
+        <h4><%= message %></h4>
 
-    <h2>Score: <%= something %></h2>
+        <i class="fa-solid fa-house"></i>
+        <i class="fa fa-house"></i>
+
+        <i class="fa-sharp fa-solid fa-house"></i>
+    
+    
+        <form action="/" method="GET">
+            <button type="submit">Play Again! <i class="fa-solid fa-house"></i> </button>
+        </form>
+
+    </div>
+
+    
     
 </body>
 </html>
