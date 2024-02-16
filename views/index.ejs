@@ -15,20 +15,22 @@
   </head>
   <body>
 
-
-    <div class="container" style="text-align: center; margin-top: 180px;">
+    <div class="container">
       <%- include('partials/navbar') %>
       
-      <h2 style="padding-bottom: 70px;">Score: <%= something %></h2>
-      <h1><%= questions[q].text %></h1>
 
-        <div class="row"></div>
+
+
+        <div class="" style="text-align: center;">
+          <h2 style="padding-bottom: 70px;">Score: <%= something %></h2>
+          <h1><%= questions[q].text %></h1>
+        </div>
         
 
 
         <form action="/" method="POST">
 
-          <div class="row">
+          <div class="row" style="text-align: center;">
 
             <div class="col-6" style="background-color: aqua;">
               <!-- <h4 style=""> <%= questions[q].a_vote %> </h4> -->
