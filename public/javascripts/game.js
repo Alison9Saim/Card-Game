@@ -2,19 +2,19 @@ console.log('Client-side game code running');
 
 
 
-const button1 = document.getElementById('one');
-const button2 = document.getElementById('two');
-const button3 = document.getElementById('three');
-const button4 = document.getElementById('four');
+//const button1 = document.getElementById('one');
+//const button2 = document.getElementById('two');
+//const button3 = document.getElementById('three');
+//const button4 = document.getElementById('four');
 
-var inputTxt = document.getElementById('selectedOpt');
+//var inputTxt = document.getElementById('selectedOpt');
 
 
-const baseUrl = "http://localhost:3000"
+//const baseUrl = "http://localhost:3000"
 
 
 //button1.addEventListener("click", changeValueOfInput("a"));
-
+/*
 function changeValueOfInput(opt){
     //debugger;
     inputTxt.value = opt;
@@ -37,7 +37,7 @@ function changeValueOfInput(opt){
 
 
 }
-/*
+
 async function getInfoA(e){
     //e.preventDefault();
     const res = await fetch(baseUrl, 
