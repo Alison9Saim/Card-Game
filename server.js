@@ -76,7 +76,7 @@ app.post('/', async (req, res) => {
 
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
-
+    debugger;
     if(userSelectedOpt == currentItem.opt_a){
         console.log("A was selected!");
 

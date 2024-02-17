@@ -1,5 +1,7 @@
 body{
     /*background-color: cadetblue !important;*/
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 h1{
@@ -12,6 +14,44 @@ h1{
     left: 0;
     bottom: 0;
     width: 100%;
-    text-align: center;
+    text-align: left;
     background-color: #f8f9fa;
+    padding-left: 50px;
+ }
+
+ .option{
+    height: 80rem;
+    border: none !important;
+    width: 50%;
+ }
+
+ .choice{
+    height: 100%;
+    width: 100%;
+    border: none !important;
+    font-size:70px;
+ }
+
+ .row{
+    margin: 0 !important;
+ }
+
+ .btn{
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important
+ }
+
+ .col{
+    border: none !important
+ }
+
+ .col-6{
+    border: none !important;
+ }
+
+
+ .choice-text{
+    font-size: 70px;
+    margin-top: -300px;
  }
