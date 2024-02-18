@@ -20,9 +20,9 @@ h1{
  }
 
  .option{
-    height: 80rem;
+    height: 150px;
     border: none !important;
-    width: 50%;
+    width: inherit;
  }
 
  .choice{
@@ -32,9 +32,6 @@ h1{
     font-size:70px;
  }
 
- .row{
-    margin: 0 !important;
- }
 
  .btn{
     padding: 0 !important;
@@ -42,16 +39,7 @@ h1{
     border: none !important
  }
 
- .col{
-    border: none !important
- }
-
- .col-6{
-    border: none !important;
- }
-
 
  .choice-text{
-    font-size: 70px;
-    margin-top: -300px;
+    font-size: 45px;
  }
