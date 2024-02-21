@@ -1,19 +1,23 @@
 var express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 var axios = require('axios');
 var bodyParser = require('body-parser');
 const {MongoClient, ObjectId} = require("mongodb");
 //var mongoose = require('mongoose');
 var app = express();
+app.set('view engine', 'ejs');
 const PORT = process.env.PORT || 3000;
 
 
 
 //app.use(express.static('public'));
-app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json())
-app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+
+app.use(bodyParser.json());
+//app.use(express.json());
+
+
 
 
 var score = 0;
@@ -69,6 +73,61 @@ app.get('/correct', (req, res) => {
     res.render('correct', {questions, something: score});
 });
 
+
+app.get('/add', (req, res) => {
+    res.render('addquestion');
+});
+
+
+app.post('/add', (req, res) => {
+
+    var questionObj = {
+        questionText: String(req.body.questionText),
+        option_a: String(req.body.option_a),
+        option_b: String(req.body.option_b)
+    };
+
+    debugger;
+
+    //print values
+
+    //connect to db,
+    async function addQuestionToDB() {
+
+        try {
+            await client.connect();
+            async function addQuestionFromUser(client) {
+                const result = await client.db("sample_questions").collection("questions").insertOne({
+                    text: questionObj.questionText,
+                    difficulty: 'Easy',
+                    category: 'Life',
+                    opt_a: questionObj.option_a,
+                    opt_b: questionObj.option_b,
+                    a_vote: 0,
+                    b_vote: 0
+                  });
+                console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
+            }
+            await addQuestionFromUser(client);
+
+           
+            res.render("test");
+
+
+
+        } catch (e) {
+            console.error(e);
+        } finally {
+            console.log("connect G is finally closed");
+            await client.close();
+        }
+    }
+    addQuestionToDB().catch(console.error);
+    //send alter message
+
+    //send success message
+
+});
 
 
 

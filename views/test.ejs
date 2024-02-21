@@ -15,29 +15,17 @@
 </head>
 <body>
     <div class="container" style="text-align: center; padding-top: 200px;">
-        <h1>Game Over, You Lose</h1>
 
-        <h2>Score: <%= something %></h2>
+        Success!
     
-        <h4><%= message %></h4>
-    
-        <form action="/" method="GET">
-            <button class="btn btn-primary" type="submit">Play Again! <i class="fa-solid fa-rotate-left"></i> </button>
+        <form action="/add" method="GET">
+            <button class="btn btn-primary" type="submit">Submit another question <i class="fa-solid fa-rotate-left"></i> </button>
+            
         </form>
-        <button class=" btn btn-success">Share!</button>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8525373858631598"
-     crossorigin="anonymous"></script>
-<!-- play again ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8525373858631598"
-     data-ad-slot="7982682168"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+        <form action="/" method="GET">
+            <button class="btn btn-primary" type="submit">Play!<i class="fa-solid fa-rotate-left"></i> </button>            
+        </form>
 
 
     </div>

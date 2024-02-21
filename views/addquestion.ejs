@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-8525373858631598">
+    <title>Add new question</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" style="text-align: center; padding-top: 200px;">
+        <h1>Add new question to game</h1>
+
+        <h2></h2>
+        <form action="/add" method="POST">
+            <div class="form-group">
+                <label for="questionText">Question Text:</label>
+                <input type="text" class="form-control" name="questionText" id="questionText" aria-describedby="emailHelp" placeholder="Type question text here...">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="option_a">Option A:</label>
+                <input type="text" class="form-control" name="option_a" id="option_a" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="option_b">Option B:</label>
+                <input type="text" class="form-control" name="option_b" id="option_b" placeholder="">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <button class=" btn btn-danger">Cancel</button>
+
+
+    </div>
+
+    
+</body>
+
+
+</html>
