@@ -14,46 +14,38 @@
 
 </head>
 <body>
-    <div class="container" style="text-align: center; padding-top: 200px;">
+    <div class="container">
         <h1>High Scores</h1>
-
-        <h1><%= users[0].userName %></h1>
-
-
         
-
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Name</th>
+                <th scope="col">Score</th>
+                <th scope="col">Date</th>
               </tr>
             </thead>
             <tbody>
 
             <% users.forEach((users, index) => { %>
               <tr>
+                <td><%= index+1 %></td>
                 <th scope="row"><%= users.userName %></th>
                 <td><%= users.score %></td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td></td>
               </tr>
             <% }) %>
 
-              
-
             </tbody>
           </table>
-
     
         <form action="/" method="GET">
             <button class="btn btn-primary" type="submit">Play Again! <i class="fa-solid fa-rotate-left"></i> </button>
         </form>
     </div>
 
-    
+    <%- include('partials/footer') %>
 </body>
 
 
