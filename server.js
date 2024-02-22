@@ -63,6 +63,33 @@ app.get('/', async (req, res) => {
     
 });
 
+app.get('/highscores', async  (req, res) => {
+
+    var listOfUsers = "";
+    async function getHighScores() {    
+        try {
+            await client.connect();
+            async function getListOfUsers(client){
+                //const result = await client.db("sample_questions").collection("high_scores").find().toArray();
+                //const result = await client.db("sample_questions").collection("high_scores").aggregate([{ $sample: { size: 5 } }]).toArray();
+                const result = await client.db("sample_questions").collection("high_scores").find().toArray();
+                listOfUsers = result;
+                console.log("list of users found" + listOfUsers[0].userName);
+
+            }
+    
+            await getListOfUsers(client);
+            res.render('highscores', {users: listOfUsers});
+
+        }
+        catch (e) {console.error(e);}
+        finally {console.log("connect A is finally closed");await client.close();}
+    }
+
+    await getHighScores().catch(console.error);
+
+
+});
 
 
 app.get('/gameover', async (req, res) => {
