@@ -324,13 +324,13 @@ app.post('/', async (req, res) => {
                     var randGameOverText = "";
                     async function getRandGameOverMessage(client){
                         const result = await client.db("sample_questions").collection("gameover_message").aggregate([{ $sample: { size: 1 } }]).toArray();
-                        rand_gameover_message = result;
+                        randGameOverText = result;
                     }
             
                     await getRandGameOverMessage(client);
 
                     res.setHeader('Content-Type', 'text/html');
-                    res.render('gameover', {something: score, message: rand_gameover_message[0].message_text});
+                    res.render('gameover', {something: score, message: randGameOverText[0].message_text});
 
                 } catch (e) {
                     console.error(e);
