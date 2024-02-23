@@ -9,8 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -31,14 +29,17 @@
             </thead>
             <tbody>
 
-            <% users.forEach((users, index) => { %>
-              <tr>
-                <td><%= index+1 %></td>
-                <th scope="row"><%= users.userName %></th>
-                <td><%= users.score %></td>
-                <td><%= users.when %></td>
-              </tr>
-            <% }) %>
+            
+            <% if (users !== 'undefined') { %>
+              <% users.forEach((users, index) => { %>
+                <tr>
+                  <td><%= index+1 %></td>
+                  <th scope="row"><%= users.userName %></th>
+                  <td><%= users.score %></td>
+                  <td><%= users.when %></td>
+                </tr>
+              <% }) %>
+            <% } %>
 
             </tbody>
           </table>

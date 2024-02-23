@@ -13,7 +13,7 @@
 </head>
 <body>
   <%- include('partials/navbar') %>
-    <div class="container" style="text-align: center; padding-top: 200px;">
+    <div class="container">
         <h1>Add new question to game</h1>
 
         <h2></h2>
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label for="questionText">Question Text:</label>
                 <input type="text" class="form-control" name="questionText" id="questionText" aria-describedby="emailHelp" placeholder="Type question text here...">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted"></small>
               </div>
               <div class="form-group">
                 <label for="option_a">Option A:</label>
@@ -31,13 +31,10 @@
                 <label for="option_b">Option B:</label>
                 <input type="text" class="form-control" name="option_b" id="option_b" placeholder="">
               </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
               <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <button class=" btn btn-danger">Cancel</button>
+        <a href="/"><button class=" btn btn-danger">Cancel <i class="fa-solid fa-rotate-left"></i></button></a>
+
 
 
     </div>
