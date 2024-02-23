@@ -154,7 +154,8 @@ app.post('/add', (req, res) => {
             await addQuestionFromUser(client);
 
            
-            res.render("/");
+            //res.render("index");
+            res.redirect("/");
 
 
 
