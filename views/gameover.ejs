@@ -14,16 +14,21 @@
 
 </head>
 <body>
+    <%- include('partials/navbar') %>
     <div class="container" style="text-align: center; padding-top: 200px;">
         <h1>Game Over, You Lose</h1>
 
-        <h2>Score: <%= something %></h2>
+        <% if (something !== 'undefined') { %>
+            <h2><%= something %></h2>
+        <% } %>
+
+        <% if (message !== 'undefined') { %>
+            <h4><%= message %></h4>
+        <% } %>
+
+
     
-        <h4><%= message %></h4>
-    
-        <form action="/" method="GET">
-            <button class="btn btn-primary" type="submit">Play Again! <i class="fa-solid fa-rotate-left"></i> </button>
-        </form>
+        <a href="/"><button class="btn btn-primary" type="submit">Play Again! <i class="fa-solid fa-rotate-left"></i> </button></a>
         <button class=" btn btn-success">Share!</button>
 
         <form action="/highscores" method="POST">

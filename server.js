@@ -29,10 +29,6 @@ const uri = "mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.MONGO_PA
 const client = new MongoClient(uri);
 
 
-app.get('/test', (req, res) => {
-    res.render('test');
-});
-
 
 app.get('/', async (req, res) => {
 
@@ -83,7 +79,7 @@ app.post('/highscores', async  (req, res) => {
                 console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
             }
             await addUserScore(client);
-            res.render("test");
+            res.render("highscores");
 
         } catch (e) {
             console.error(e);
@@ -106,7 +102,6 @@ app.get('/highscores', async  (req, res) => {
             await client.connect();
             async function getListOfUsers(client){
                 const result = await client.db("sample_questions").collection("high_scores").find({},{_id:0}).sort({"score":-1}).toArray();
-                //const result = await client.db("sample_questions").collection("high_scores").find().sort( { "score": 1 } ).toArray();
                 listOfUsers = result;
                 console.log("list of users found" + listOfUsers[0].userName);
             }
@@ -122,12 +117,8 @@ app.get('/highscores', async  (req, res) => {
 });
 
 
-app.get('/gameover', async (req, res) => {
-    res.render('gameover', {questions, something: score});
-});
-
-app.get('/correct', (req, res) => {
-    res.render('correct', {questions, something: score});
+app.get('/gameover', (req, res) => {
+    res.render('gameover', {something: score, message:""});
 });
 
 
@@ -144,11 +135,6 @@ app.post('/add', (req, res) => {
         option_b: String(req.body.option_b)
     };
 
-    debugger;
-
-    //print values
-
-    //connect to db,
     async function addQuestionToDB() {
 
         try {
@@ -168,7 +154,7 @@ app.post('/add', (req, res) => {
             await addQuestionFromUser(client);
 
            
-            res.render("test");
+            res.render("/");
 
 
 
@@ -180,10 +166,6 @@ app.post('/add', (req, res) => {
         }
     }
     addQuestionToDB().catch(console.error);
-    //send alter message
-
-    //send success message
-
 });
 
 
@@ -192,7 +174,6 @@ app.post('/', async (req, res) => {
 
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
-    debugger;
     if(userSelectedOpt == currentItem.opt_a){
         console.log("A was selected!");
 
@@ -212,13 +193,13 @@ app.post('/', async (req, res) => {
                     }
                     await updateListingByName_A(client, questions[currentIndex]._id);
 
-                    debugger;
+
                     if(currentIndex == 4 || currentIndex == 5 ){
                         async function getQuestionsAgain(client){
                             const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
                             questions = result;
                             currentIndex = 0;
-                            debugger;
+
                             console.log("new questions are ready");
                         }
                          await getQuestionsAgain(client);
@@ -299,13 +280,11 @@ app.post('/', async (req, res) => {
                     }
                     await updateListingByName_B_2(client, questions[currentIndex]._id);
 
-                    debugger;
                     if(currentIndex == 4 || currentIndex == 5 ){
                         async function getQuestionsAgain(client){
                             const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
                             questions = result;
                             currentIndex = 0;
-                            debugger;
                             console.log("new questions are ready");
                         }
                          await getQuestionsAgain(client);
