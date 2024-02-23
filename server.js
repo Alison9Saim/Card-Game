@@ -79,7 +79,7 @@ app.post('/highscores', async  (req, res) => {
                 console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
             }
             await addUserScore(client);
-            res.render("highscores");
+
 
         } catch (e) {
             console.error(e);
@@ -89,6 +89,7 @@ app.post('/highscores', async  (req, res) => {
         }
     }
     await AddUserToHighScores().catch(console.error);
+    res.redirect("/");
 
 
 
@@ -127,7 +128,7 @@ app.get('/add', (req, res) => {
 });
 
 
-app.post('/add', (req, res) => {
+app.post('/add', async (req, res) => {
 
     var questionObj = {
         questionText: String(req.body.questionText),
@@ -166,7 +167,7 @@ app.post('/add', (req, res) => {
             await client.close();
         }
     }
-    addQuestionToDB().catch(console.error);
+    await addQuestionToDB().catch(console.error);
 });
 
 
