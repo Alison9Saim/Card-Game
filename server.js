@@ -65,6 +65,9 @@ app.get('/', async (req, res) => {
 
 
 app.post('/highscores', async  (req, res) => {
+
+    var userNameTxtField = String(req.body.userNameTxt);
+
     console.log("post user to highscores with score of " + score);
 
     async function AddUserToHighScores() {
@@ -73,8 +76,9 @@ app.post('/highscores', async  (req, res) => {
             await client.connect();
             async function addUserScore(client) {
                 const result = await client.db("sample_questions").collection("high_scores").insertOne({
-                    userName: "Bob",
-                    score: score
+                    userName: userNameTxtField,
+                    score: score,
+                    when: new Date()
                   });
                 console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
             }
