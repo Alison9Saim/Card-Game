@@ -60,6 +60,28 @@ app.get('/', async (req, res) => {
 });
 
 
+app.get('/highscores', async  (req, res) => {
+    var listOfUsers = "";
+    async function getHighScores() {    
+        try {
+            await client.connect();
+            async function getListOfUsers(client){
+                const result = await client.db("sample_questions").collection("high_scores").find({},{_id:0}).sort({"score":-1}).toArray();
+                listOfUsers = result;
+            }
+    
+            await getListOfUsers(client);
+            res.render('highscores', {users: listOfUsers});
+
+        }
+        catch (e) {console.error(e);}
+        finally {console.log("connect A is finally closed");await client.close();}
+    }
+    await getHighScores().catch(console.error);
+});
+
+
+
 app.post('/highscores', async  (req, res) => {
 
     var userNameTxtField = String(req.body.userNameTxt);
@@ -95,27 +117,6 @@ app.post('/highscores', async  (req, res) => {
 
 });
 
-
-app.get('/highscores', async  (req, res) => {
-    var listOfUsers = "";
-    async function getHighScores() {    
-        try {
-            await client.connect();
-            async function getListOfUsers(client){
-                const result = await client.db("sample_questions").collection("high_scores").find({},{_id:0}).sort({"score":-1}).toArray();
-                listOfUsers = result;
-                console.log("list of users found" + listOfUsers[0].userName);
-            }
-    
-            await getListOfUsers(client);
-            res.render('highscores', {users: listOfUsers});
-
-        }
-        catch (e) {console.error(e);}
-        finally {console.log("connect A is finally closed");await client.close();}
-    }
-    await getHighScores().catch(console.error);
-});
 
 
 app.get('/gameover', (req, res) => {
