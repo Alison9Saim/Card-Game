@@ -358,4 +358,9 @@ app.post('/', async (req, res) => {
 });
 
 
+app.get('/contact', (req, res) =>{
+    res.render('contact');
+});
+
+
 app.listen(PORT, () => console.log("App started on " + {PORT}))
