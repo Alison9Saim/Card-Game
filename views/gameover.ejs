@@ -22,9 +22,14 @@
             <h2><%= something %></h2>
         <% } %>
 
+        <!--
         <% if (message !== 'undefined') { %>
             <h4><%= message %></h4>
         <% } %>
+        -->
+
+        <h4><%= locals.message || 'Give it another try!' %></h4>
+
 
     
         <a href="/"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-rotate-left"> </i>Play Again!</button></a>
