@@ -22,10 +22,10 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Rank</th>
+                <th scope="col" style="text-align: center;">Rank</th>
                 <th scope="col">Name</th>
-                <th scope="col">Score</th>
-                <th scope="col">Date</th>
+                <th scope="col" style="text-align: center;">Score</th>
+                <th scope="col" style="text-align: center;">Date</th>
               </tr>
             </thead>
             <tbody>
@@ -35,17 +35,20 @@
               <% users.forEach((users, index) => { %>
                 <tr style="text-align: center;">
                   <td><% if (index+1 == 1){ %>
-                    <i class="fa-solid fa-trophy fa-2xl" style="color: #FFD43B;" data-anijs="if: mouseover, do: tada animated"></i>
+                    <i class="fa-solid fa-trophy fa-2xl" title="Gold" style="color: #FFD43B;" data-anijs="if: mouseover, do: tada animated"></i>
                   <% }else if(index+1 == 2){ %>
-                    <i class="fa-solid fa-medal fa-xl"  style="color: #c0c0c0;" data-anijs="if: mouseover, do: tada animated"></i>
+                    <i class="fa-solid fa-medal fa-xl" title="Silver"  style="color: #c0c0c0;" data-anijs="if: mouseover, do: tada animated"></i>
                   <% }else if(index+1 == 3){ %>
-                    <i class="fa-solid fa-award fa-lg" style="color: #CD7F32" data-anijs="if: mouseover, do: tada animated"></i>
+                    <i class="fa-solid fa-award fa-lg" title="Bronze" style="color: #CD7F32" data-anijs="if: mouseover, do: tada animated"></i>
                   <% } else { %>
                     <%= index+1 %>
                   <%} %></td>
-                  <th scope="row"><%= users.userName %></th>
-                  <td><%= users.score %></td>
-                  <td><%= users.when %></td>
+                  <th scope="row" style="text-align: left;"> 
+                  <% if (users.recent == true) { %>
+                    <i class="fa-regular fa-clock fa-2xs" style="color: #74C0FC;" title="Recent"></i>
+                  <%} %> <%= users.userName %></th>
+                  <td style="text-align: center;"><%= users.score %></td>
+                  <td><%= users.when %> </td>
                 </tr>
               <% }) %>
             <% } %>

@@ -68,6 +68,18 @@ app.get('/highscores', async  (req, res) => {
             async function getListOfUsers(client){
                 const result = await client.db("sample_questions").collection("high_scores").find({},{_id:0}).sort({"score":-1}).toArray();
                 listOfUsers = result;
+                var ONE_HOUR = 60 * 60 * 1000; /* ms */
+                var CURRENT_TIME_IN_MS = new Date().getTime();
+                var ONE_HOUR_AGO = CURRENT_TIME_IN_MS - ONE_HOUR;
+
+                for(i = 0; i < result.length; i++){
+                    if(result[i].when > ONE_HOUR_AGO){
+                        result[i].recent = true;
+                    }
+                    else{
+                        result[i].recent = false;
+                    }
+                }
             }
     
             await getListOfUsers(client);
