@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-8525373858631598">
+    <title>About</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container">
+        <h1>About</h1>
+
+        <p>This is a simple game. The objective of the game is to choose the option is that is popular amount the user base. Keep chooing the more popular choice to score higher points.
+            Everytime a selection is make(regardless of correct or incorrect) the option's value is incrased by one vote. Today Option A is the more popular choice, tomorrow it could be Option B.
+        </p>
+
+        <h5>How Does it Work?</h5>
+        <p>A random question will be displayed with two different options. You select the option that you think is more popular.</p>
+        <p>Your selected option vote will be increased by one. We will then compare your selection to everyone else's choice. If you selected the popular voted option, you score a point and move on to the next question.</p>
+
+        <div style="background-color: antiquewhite; text-align: center; height: 6em;"><h2>Random question will appear</h2></div>
+        <div style="text-align: center; display: flex;">
+            <div style="background-color: red; width: 50%; height: 14em;"><h2>Option A</h2></div>
+            <div style="background-color: blue;  width: 50%; height: 14em;"><h2>Option B</h2></div>
+        </div>
+
+        <div style="text-align: center; padding-top: 50px;">
+            <a href="/"><button class="btn btn-primary" type="submit"> <i class="fa-solid fa-play"></i> Play!</button></a>
+        </div>
+
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</html>
