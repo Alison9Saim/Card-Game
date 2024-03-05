@@ -382,5 +382,9 @@ app.get('/privacy', (req, res) =>{
     res.render('privacy-policy');
 });
 
+app.get('/cookies', (req, res) =>{
+    res.render('cookies');
+});
+
 
 app.listen(PORT, () => console.log("App started on " + {PORT}))
