@@ -387,4 +387,9 @@ app.get('/cookies', (req, res) =>{
 });
 
 
+app.post('/email', (req, res) =>{
+    console.log("send the email");
+});
+
+
 app.listen(PORT, () => console.log("App started on " + {PORT}))

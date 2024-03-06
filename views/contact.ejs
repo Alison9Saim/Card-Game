@@ -20,10 +20,27 @@
 
         <p>Please email us at <a href="aorb.info@gmail.com">aorb.info@gmail.com</a> for all business related questions.</p>
         
+        <form action="/email" method="POST">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email address:</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" aria-describedby="emailHelp" placeholder="name@example.com">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
 
-        
-    
+            <div class="form-group">
+                <label for="validationTooltip02">Subject of email:</label>
+                <input type="text" class="form-control" id="validationTooltip02" placeholder="Subject line" required>
+                <div class="invalid-tooltip">
+                Subject of email
+            </div>
 
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Email</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+            </div>
+          </form>
+          <button class=" btn btn-success"><i class="fa-solid fa-envelope"></i> Send</button>
+          <button class=" btn btn-danger"><i class="fa-solid fa-eraser"></i> Clear</button>
     </div>
 
     <%- include('partials/footer') %>
