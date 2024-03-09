@@ -1,6 +1,7 @@
 var express = require('express');
 require('dotenv').config();
 var axios = require('axios');
+var nodemailer = require("nodemailer");
 var bodyParser = require('body-parser');
 const {MongoClient, ObjectId} = require("mongodb");
 //var mongoose = require('mongoose');
@@ -387,8 +388,39 @@ app.get('/cookies', (req, res) =>{
 });
 
 
-app.post('/email', (req, res) =>{
-    console.log("send the email");
+app.post('/email', async (req, res) => {
+    
+    const transporter = nodemailer.createTransport({
+        //host: "smtp.ethereal.email",
+        service: "Gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // Use `true` for port 465, `false` for all other ports // 587
+        auth: {
+          //user: "aorb.info@gmail.com",
+          user: process.env.GMAIL,
+          //pass: "lpcxgyxgxbxdepvy",
+          pass: process.env.GMAIL_PASS
+        },
+      });
+      
+      // async..await is not allowed in global scope, must use a wrapper
+      async function main() {
+        // send mail with defined transport object
+        const info = await transporter.sendMail({
+          from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
+          to: "bar@example.com, baz@example.com", // list of receivers
+          subject: "Hello ✔", // Subject line
+          text: "Hello world?", // plain text body
+          html: "<b>Hello world?</b>", // html body
+        });
+      
+        console.log("Message sent: %s", info.messageId);
+        // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+      }
+      
+      await main().catch(console.error);
+
 });
 
 
