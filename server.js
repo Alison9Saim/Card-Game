@@ -124,7 +124,7 @@ app.post('/highscores', async  (req, res) => {
         }
     }
     await AddUserToHighScores().catch(console.error);
-    res.redirect("/");
+    res.redirect("/highscores");
 
 
 
@@ -187,7 +187,7 @@ app.post('/add', async (req, res) => {
 
 
 app.post('/', async (req, res) => {
-
+    debugger;
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
     if(userSelectedOpt == currentItem.opt_a){

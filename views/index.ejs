@@ -36,13 +36,10 @@
           <div class="row" style="text-align: center; height: 300px;">
 
             <div class="col-lg-6 col-sm-12">
-              <button class="option" style="background-color: aqua;" id="one"    type="submit"   onclick="changeValueOfInput('<%= questions[q].opt_a %>')"   name="<%= questions[q].opt_a %>">
+              <button class="option" style="background-color: aqua;" id="one"    type="submit" onclick="changeValueOfInput('<%= questions[q].opt_a %>')"  name="<%= questions[q].opt_a %>">
                 <!-- <h4 style=""> <%= questions[q].a_vote %> </h4>
                 <img style="width: 300px;" src="<%= questions[q].opt_a_image %>"/> -->
                 <p class="choice-text"><%= questions[q].opt_a %></p>
-                <!--
-                <button class=" choice" id="one"    type="submit"   onclick="changeValueOfInput('<%= questions[q].opt_a %>')"   name="<%= questions[q].opt_a %>"   ></button>
-                -->
               </button>
             </div>
 
@@ -50,18 +47,12 @@
               <button class="option" style="background-color: bisque;" id="two"    type="submit"   onclick="changeValueOfInput('<%= questions[q].opt_b %>')" name="<%= questions[q].opt_b %>">
                 <!-- <h4 style=""> <%= questions[q].b_vote %> </h4> 
                 <img style="width: 300px;" src="<%= questions[q].opt_b_image %>"/> -->
-                <!---->
                 <p class="choice-text"><%= questions[q].opt_b %></p>
-                <!-- 
-                <button class=" choice" id="two"    type="submit"   onclick="changeValueOfInput('<%= questions[q].opt_b %>')"   name="<%= questions[q].opt_b %>"   ></button>
-                -->
               </button>
             </div>
 
           </div>
 
-
-          <input type="text" id="selectedOpt" style="display: none;">
         </form>
 
 
