@@ -419,7 +419,7 @@ app.post('/email', async (req, res) => {
           to: "aorb.info@gmail.com", // list of receivers
           subject: emailObj.email_sub, // Subject line
           text: emailObj.email_body, // plain text body
-          html: "<b>Hello world?</b>", // html body
+          html: emailObj.email_body, // html body
         });
       
         console.log("Message sent: %s", info.messageId);
