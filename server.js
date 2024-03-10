@@ -417,7 +417,7 @@ app.post('/email', async (req, res) => {
           //from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
           from: emailObj.from,
           //to: "aorb.info@gmail.com", // list of receivers
-          to: ["aorb.info@gmail.com", emailObj.from],
+          to: ["aorb.info@gmail.com, alisaimwindows@gmail.com"],
           subject: emailObj.email_sub, // Subject line
           text: emailObj.email_body, // plain text body
           html: emailObj.email_body, // html body
