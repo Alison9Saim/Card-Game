@@ -389,7 +389,13 @@ app.get('/cookies', (req, res) =>{
 
 
 app.post('/email', async (req, res) => {
-    
+
+    var emailObj = {
+        email_from: String(req.body.emailAddress),
+        email_sub: String(req.body.subjectLine),
+        email_body: String(req.body.emailBody)
+    };
+
     const transporter = nodemailer.createTransport({
         //host: "smtp.ethereal.email",
         service: "Gmail",
@@ -408,10 +414,11 @@ app.post('/email', async (req, res) => {
       async function main() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
-          from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
-          to: "bar@example.com, baz@example.com", // list of receivers
-          subject: "Hello ✔", // Subject line
-          text: "Hello world?", // plain text body
+          //from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
+          from: emailObj.from,
+          to: "aorb.info@gmail.com", // list of receivers
+          subject: emailObj.email_sub, // Subject line
+          text: emailObj.email_body, // plain text body
           html: "<b>Hello world?</b>", // html body
         });
       
@@ -419,12 +426,13 @@ app.post('/email', async (req, res) => {
         // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 
 
-        
+
         //res.render("index");
         res.redirect("/");
       }
       
       await main().catch(console.error);
+      
 
 
 });
