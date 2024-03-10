@@ -416,7 +416,8 @@ app.post('/email', async (req, res) => {
         const info = await transporter.sendMail({
           //from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
           from: emailObj.from,
-          to: "aorb.info@gmail.com", // list of receivers
+          //to: "aorb.info@gmail.com", // list of receivers
+          to: ["aorb.info@gmail.com", emailObj.from],
           subject: emailObj.email_sub, // Subject line
           text: emailObj.email_body, // plain text body
           html: emailObj.email_body, // html body
