@@ -439,6 +439,11 @@ app.post('/email', async (req, res) => {
 });
 
 
+app.get('/ads.txt', (req, res) =>{
+    const filePath = __dirname + '/ads.txt'
+    res.sendFile(filePath);
+});
+
 
 //potential google error fix?
 app.get('/*', (req, res) =>{
