@@ -439,4 +439,10 @@ app.post('/email', async (req, res) => {
 });
 
 
+
+//potential google error fix?
+app.get('/*', (req, res) =>{
+    res.redirect('/');
+});
+
 app.listen(PORT, () => console.log("App started on " + {PORT}))
