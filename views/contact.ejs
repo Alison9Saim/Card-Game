@@ -18,7 +18,8 @@
     <div class="container">
         <h1>Contact Info</h1>
 
-        <p>Please email us at <a href="aorb.info@gmail.com">aorb.info@gmail.com</a> for all business related questions.</p>
+        <p>Please use the form below to write us a short email and our team will be happy to assist.
+        You can also email us directly at <a href="aorb.info@gmail.com">aorb.info@gmail.com</a> for all business related questions.</p>
         
         <form action="/email" method="POST">
             <div class="form-group">
@@ -39,8 +40,9 @@
               <textarea class="form-control" id="emailBody" name="emailBody" rows="4" required></textarea>
             </div>
           </form>
-          <button class=" btn btn-success"><i class="fa-solid fa-envelope"></i> Send</button>
-          <button id="clearBtn" onclick="clearform()" class=" btn btn-danger"><i class="fa-solid fa-eraser"></i> Clear</button>
+          <button class=" btn btn-success" title="Send email"><i class="fa-solid fa-envelope"></i> Send</button>
+          <button id="clearBtn" title="Clear the form" onclick="clearform()" class=" btn btn-danger"><i class="fa-solid fa-eraser"></i> Clear</button>
+
     </div>
 
     <%- include('partials/footer') %>
