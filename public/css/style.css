@@ -1,10 +1,97 @@
-body{
-    /*background-color: cadetblue !important;*/
-
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+   body{
+      /*background-color: pink !important; */
+     }
+     .option{
+      height: 100px;
+      border: none !important;
+      width: inherit;
+      }
+   
+   .choice{
+      height: 100%;
+      width: 100%;
+      border: none !important;
+      font-size:70px;
+      }
 }
 
-h1{
-   /* color: red; */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+   body{
+     /* background-color: orange!important; */
+     }
+     .option{
+      height: 200px;
+      border: none !important;
+      width: inherit;
+      }
+   
+   .choice{
+      height: 100%;
+      width: 100%;
+      border: none !important;
+      font-size:70px;
+      }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   body{
+     /* background-color: blue!important */
+     }
+     .option{
+      height: 300px;
+      border: none !important;
+      width: inherit;
+      }
+   
+   .choice{
+      height: 100%;
+      width: 100%;
+      border: none !important;
+      font-size:70px;
+      }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+   body{
+     /* background-color: green!important; */
+     }
+     .option{
+      height: 400px;
+      border: none !important;
+      width: inherit;
+      }
+   
+   .choice{
+      height: 100%;
+      width: 100%;
+      border: none !important;
+      font-size:70px;
+      }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body{
+  /* background-color: red!important; */
+  }
+
+  .option{
+   height: 500px;
+   border: none !important;
+   width: inherit;
+   }
+
+.choice{
+   height: 100%;
+   width: 100%;
+   border: none !important;
+   font-size:70px;
+   }
 }
 
 
@@ -18,18 +105,7 @@ h1{
     padding-left: 50px;
  }
 
- .option{
-    height: 150px;
-    border: none !important;
-    width: inherit;
- }
 
- .choice{
-    height: 100%;
-    width: 100%;
-    border: none !important;
-    font-size:70px;
- }
 
 
  .btn{
