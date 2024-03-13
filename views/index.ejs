@@ -29,15 +29,12 @@
         </div>
         
 
-
         <form action="/" method="POST">
 
           <div class="row" style="text-align: center; height: 300px;">
 
             <div class="col-lg-6 col-sm-12">
               <button class="option" style="background-color: aqua;" id="one"    type="submit"   name="<%= questions[q].opt_a %>">
-                <!-- <h4 style=""> <%= questions[q].a_vote %> </h4>
-                <img style="width: 300px;" src="<%= questions[q].opt_a_image %>"/> -->
                 <p class="choice-text"><%= questions[q].opt_a %></p>
               </button>
             </div>
@@ -46,8 +43,6 @@
 
             <div class="col-lg-6 col-sm-12" >
               <button class="option" style="background-color: bisque;" id="two"    type="submit"    name="<%= questions[q].opt_b %>">
-                <!-- <h4 style=""> <%= questions[q].b_vote %> </h4> 
-                <img style="width: 300px;" src="<%= questions[q].opt_b_image %>"/> -->
                 <p class="choice-text"><%= questions[q].opt_b %></p>
               </button>
             </div>

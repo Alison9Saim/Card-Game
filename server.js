@@ -98,9 +98,6 @@ app.get('/highscores', async  (req, res) => {
 app.post('/highscores', async  (req, res) => {
 
     var userNameTxtField = String(req.body.userNameTxt);
-
-    console.log("post user to highscores with score of " + score);
-
     async function AddUserToHighScores() {
 
         try {
@@ -119,7 +116,6 @@ app.post('/highscores', async  (req, res) => {
         } catch (e) {
             console.error(e);
         } finally {
-            console.log("connect G is finally closed");
             await client.close();
         }
     }
@@ -177,7 +173,6 @@ app.post('/add', async (req, res) => {
         } catch (e) {
             console.error(e);
         } finally {
-            console.log("connect G is finally closed");
             await client.close();
         }
     }
@@ -187,14 +182,13 @@ app.post('/add', async (req, res) => {
 
 
 app.post('/', async (req, res) => {
-    debugger;
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
     if(userSelectedOpt == currentItem.opt_a){
-        console.log("A was selected!");
+        //A Selected
 
         if(currentItem.a_vote >= currentItem.b_vote){
-            console.log("Correct!");
+            //Correct
             score = score + 1;
             currentItem.a_vote = currentItem.a_vote + 1;
 
@@ -229,7 +223,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect C is finally closed");
                     await client.close();
                 }
             }
@@ -240,7 +233,7 @@ app.post('/', async (req, res) => {
             
 
         }else{
-            console.log("WRONG!");
+            // Wrong
             currentItem.a_vote = currentItem.a_vote + 1;
 
             async function updateOneDocByID_B_Wrong() {
@@ -267,7 +260,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect D is finally closed");
                     await client.close();
                 }
             }
@@ -279,9 +271,9 @@ app.post('/', async (req, res) => {
 
 
     if(userSelectedOpt == currentItem.opt_b){
-        console.log("B was selected!");
+        //B Selected
         if(currentItem.b_vote >= currentItem.a_vote){
-            console.log("Correct!");
+            //Correct
             score = score + 1;
             currentItem.b_vote = currentItem.b_vote + 1;
 
@@ -312,7 +304,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect E is finally closed");
                     await client.close();
                 }
             }
@@ -324,9 +315,8 @@ app.post('/', async (req, res) => {
 
 
         }else{
-            console.log("WRONG!");
+            //WRONG
             currentItem.b_vote = currentItem.b_vote + 1;
-
             async function updateOneDocByID_B_adam() {
                 try {
                     await client.connect();
@@ -351,7 +341,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect F is finally closed");
                     await client.close();
                 }
             }
