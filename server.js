@@ -427,7 +427,7 @@ app.post('/email', async (req, res) => {
 
 });
 
-
+/*
 app.get('/ads.txt', (req, res) =>{
     const filePath = __dirname + '/ads.txt'
     res.sendFile(filePath);
@@ -438,5 +438,6 @@ app.get('/ads.txt', (req, res) =>{
 app.get('/*', (req, res) =>{
     res.redirect('/');
 });
+*/
 
 app.listen(PORT, () => console.log("App started on " + {PORT}))
