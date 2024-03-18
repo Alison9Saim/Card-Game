@@ -1,6 +1,7 @@
 var express = require('express');
 require('dotenv').config();
 var axios = require('axios');
+var nodemailer = require("nodemailer");
 var bodyParser = require('body-parser');
 const {MongoClient, ObjectId} = require("mongodb");
 //var mongoose = require('mongoose');
@@ -97,9 +98,6 @@ app.get('/highscores', async  (req, res) => {
 app.post('/highscores', async  (req, res) => {
 
     var userNameTxtField = String(req.body.userNameTxt);
-
-    console.log("post user to highscores with score of " + score);
-
     async function AddUserToHighScores() {
 
         try {
@@ -118,12 +116,11 @@ app.post('/highscores', async  (req, res) => {
         } catch (e) {
             console.error(e);
         } finally {
-            console.log("connect G is finally closed");
             await client.close();
         }
     }
     await AddUserToHighScores().catch(console.error);
-    res.redirect("/");
+    res.redirect("/highscores");
 
 
 
@@ -176,7 +173,6 @@ app.post('/add', async (req, res) => {
         } catch (e) {
             console.error(e);
         } finally {
-            console.log("connect G is finally closed");
             await client.close();
         }
     }
@@ -186,14 +182,13 @@ app.post('/add', async (req, res) => {
 
 
 app.post('/', async (req, res) => {
-
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
     if(userSelectedOpt == currentItem.opt_a){
-        console.log("A was selected!");
+        //A Selected
 
         if(currentItem.a_vote >= currentItem.b_vote){
-            console.log("Correct!");
+            //Correct
             score = score + 1;
             currentItem.a_vote = currentItem.a_vote + 1;
 
@@ -228,7 +223,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect C is finally closed");
                     await client.close();
                 }
             }
@@ -239,7 +233,7 @@ app.post('/', async (req, res) => {
             
 
         }else{
-            console.log("WRONG!");
+            // Wrong
             currentItem.a_vote = currentItem.a_vote + 1;
 
             async function updateOneDocByID_B_Wrong() {
@@ -266,7 +260,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect D is finally closed");
                     await client.close();
                 }
             }
@@ -278,9 +271,9 @@ app.post('/', async (req, res) => {
 
 
     if(userSelectedOpt == currentItem.opt_b){
-        console.log("B was selected!");
+        //B Selected
         if(currentItem.b_vote >= currentItem.a_vote){
-            console.log("Correct!");
+            //Correct
             score = score + 1;
             currentItem.b_vote = currentItem.b_vote + 1;
 
@@ -311,7 +304,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect E is finally closed");
                     await client.close();
                 }
             }
@@ -323,9 +315,8 @@ app.post('/', async (req, res) => {
 
 
         }else{
-            console.log("WRONG!");
+            //WRONG
             currentItem.b_vote = currentItem.b_vote + 1;
-
             async function updateOneDocByID_B_adam() {
                 try {
                     await client.connect();
@@ -350,7 +341,6 @@ app.post('/', async (req, res) => {
                 } catch (e) {
                     console.error(e);
                 } finally {
-                    console.log("connect F is finally closed");
                     await client.close();
                 }
             }
@@ -372,6 +362,81 @@ app.post('/', async (req, res) => {
 
 app.get('/contact', (req, res) =>{
     res.render('contact');
+});
+
+app.get('/about', (req, res) =>{
+    res.render('about');
+});
+
+app.get('/privacy', (req, res) =>{
+    res.render('privacy-policy');
+});
+
+app.get('/cookies', (req, res) =>{
+    res.render('cookies');
+});
+
+
+app.post('/email', async (req, res) => {
+
+    var emailObj = {
+        email_from: String(req.body.emailAddress),
+        email_sub: String(req.body.subjectLine),
+        email_body: String(req.body.emailBody)
+    };
+
+    const transporter = nodemailer.createTransport({
+        //host: "smtp.ethereal.email",
+        service: "Gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // Use `true` for port 465, `false` for all other ports // 587
+        auth: {
+          //user: "aorb.info@gmail.com",
+          user: process.env.GMAIL,
+          //pass: "lpcxgyxgxbxdepvy",
+          pass: process.env.GMAIL_PASS
+        },
+      });
+      
+      // async..await is not allowed in global scope, must use a wrapper
+      async function main() {
+        // send mail with defined transport object
+        const info = await transporter.sendMail({
+          //from: '"Maddison Foo Koch 👻" <aorb.info@gmail.com>', // sender address
+          from: emailObj.from,
+          //to: "aorb.info@gmail.com", // list of receivers
+          to: ["aorb.info@gmail.com, alisaimwindows@gmail.com"],
+          subject: emailObj.email_sub, // Subject line
+          text: emailObj.email_body, // plain text body
+          html: emailObj.email_body, // html body
+        });
+      
+        console.log("Message sent: %s", info.messageId);
+        // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+
+
+
+        //res.render("index");
+        res.redirect("/");
+      }
+      
+      await main().catch(console.error);
+      
+
+
+});
+
+
+app.get('/ads.txt', (req, res) =>{
+    const filePath = __dirname + '/ads.txt'
+    res.sendFile(filePath);
+});
+
+
+//potential google error fix?
+app.get('/*', (req, res) =>{
+    res.redirect('/');
 });
 
 
