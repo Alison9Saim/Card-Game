@@ -226,7 +226,7 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-            await updateOneDocByID().catch(console.error);
+            updateOneDocByID().catch(console.error);
 
             
             
@@ -263,7 +263,7 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-           await updateOneDocByID_B_Wrong().catch(console.error);
+            updateOneDocByID_B_Wrong().catch(console.error);
 
         }
 
@@ -308,7 +308,7 @@ app.post('/', async (req, res) => {
                 }
             }
             
-            await updateOneDocByID_B_Right().catch(console.error);
+             updateOneDocByID_B_Right().catch(console.error);
 
 
 
@@ -344,7 +344,7 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-            await updateOneDocByID_B_adam().catch(console.error);
+             updateOneDocByID_B_adam().catch(console.error);
         }
 
     }
