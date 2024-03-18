@@ -6,7 +6,7 @@ const {MongoClient, ObjectId} = require("mongodb");
 //var mongoose = require('mongoose');
 var app = express();
 app.set('view engine', 'ejs');
-const PORT = process.env.PORT || 3000;
+const Port = process.env.PORT || 3000;
 
 
 
@@ -375,4 +375,7 @@ app.get('/contact', (req, res) =>{
 });
 
 
-app.listen(PORT, () => console.log("App started on " + {PORT}))
+
+app.listen(Port, () => {
+  console.log('Express server listening on port', Port)
+});
