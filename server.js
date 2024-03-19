@@ -42,7 +42,7 @@ app.get('/', async (req, res) => {
         try {
             await client.connect();
             async function getQuestions(client){
-                const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
+                const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 30 } }]).toArray();
                 questions = result;
                 currentIndex = 0;
                 console.log("new questions are ready");
@@ -204,16 +204,7 @@ app.post('/', async (req, res) => {
                     await updateListingByName_A(client, questions[currentIndex]._id);
 
 
-                    if(currentIndex == 4 || currentIndex == 5 ){
-                        async function getQuestionsAgain(client){
-                            const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
-                            questions = result;
-                            currentIndex = 0;
 
-                            console.log("new questions are ready");
-                        }
-                         await getQuestionsAgain(client);
-                    }
 
                     currentIndex = currentIndex + 1;
                     res.render("index", {questions, something: score, q: currentIndex});
@@ -226,7 +217,20 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-            updateOneDocByID().catch(console.error);
+            await updateOneDocByID().catch(console.error);
+
+            /*
+            if(currentIndex == 4 || currentIndex == 5 ){
+                async function getQuestionsAgain(client){
+                    const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
+                    questions = result;
+                    currentIndex = 0;
+
+                    console.log("new questions are ready");
+                }
+                await getQuestionsAgain(client);
+            }
+            */
 
             
             
@@ -263,7 +267,7 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-            updateOneDocByID_B_Wrong().catch(console.error);
+            await updateOneDocByID_B_Wrong().catch(console.error);
 
         }
 
@@ -288,15 +292,6 @@ app.post('/', async (req, res) => {
                     }
                     await updateListingByName_B_2(client, questions[currentIndex]._id);
 
-                    if(currentIndex == 4 || currentIndex == 5 ){
-                        async function getQuestionsAgain(client){
-                            const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
-                            questions = result;
-                            currentIndex = 0;
-                            console.log("new questions are ready");
-                        }
-                         await getQuestionsAgain(client);
-                    }
 
                     currentIndex = currentIndex + 1;
                     res.render("index", {questions, something: score, q: currentIndex});
@@ -309,6 +304,18 @@ app.post('/', async (req, res) => {
             }
             
              updateOneDocByID_B_Right().catch(console.error);
+
+            /*
+             if(currentIndex == 4 || currentIndex == 5 ){
+                async function getQuestionsAgain(client){
+                    const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
+                    questions = result;
+                    currentIndex = 0;
+                    console.log("new questions are ready");
+                }
+                 await getQuestionsAgain(client);
+            }
+            */
 
 
 
@@ -344,7 +351,7 @@ app.post('/', async (req, res) => {
                     await client.close();
                 }
             }
-             updateOneDocByID_B_adam().catch(console.error);
+            await updateOneDocByID_B_adam().catch(console.error);
         }
 
     }
