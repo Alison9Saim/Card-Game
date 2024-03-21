@@ -184,183 +184,48 @@ app.post('/add', async (req, res) => {
 app.post('/', async (req, res) => {
     var userSelectedOpt = Object.keys(req.body)[0];
     var currentItem = questions[currentIndex];
-    if(userSelectedOpt == currentItem.opt_a){
-        //A Selected
 
-        if(currentItem.a_vote >= currentItem.b_vote){
-            //Correct
-            score = score + 1;
-            currentItem.a_vote = currentItem.a_vote + 1;
+        score = score + 1;
+        currentItem.a_vote = currentItem.a_vote + 1;
 
+        async function updateOneDocByID() {
 
-            async function updateOneDocByID() {
-
-                try {
-                    await client.connect();
-                    async function updateListingByName_A(client, nameOfListing) {
-                        const result = await client.db("sample_questions").collection("questions").updateOne({ _id: nameOfListing }, { $set: {a_vote: currentItem.a_vote} });
-                        console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
-                    }
-                    await updateListingByName_A(client, questions[currentIndex]._id);
-
-
-
-
-                    currentIndex = currentIndex + 1;
-                    res.render("index", {questions, something: score, q: currentIndex});
-
-
-
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    await client.close();
+            try {
+                await client.connect();
+                async function updateListingByName_A(client, nameOfListing) {
+                    const result = await client.db("sample_questions").collection("questions").updateOne({ _id: nameOfListing }, { $set: {a_vote: currentItem.a_vote} });
+                    console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
                 }
-            }
-            await updateOneDocByID().catch(console.error);
+                await updateListingByName_A(client, questions[currentIndex]._id);
 
-            /*
-            if(currentIndex == 4 || currentIndex == 5 ){
-                async function getQuestionsAgain(client){
-                    const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
-                    questions = result;
-                    currentIndex = 0;
 
-                    console.log("new questions are ready");
-                }
-                await getQuestionsAgain(client);
-            }
-            */
+                currentIndex = currentIndex + 1;
+                res.render("index", {questions, something: score, q: currentIndex});
 
-            
-            
-            
-
-        }else{
-            // Wrong
-            currentItem.a_vote = currentItem.a_vote + 1;
-
-            async function updateOneDocByID_B_Wrong() {
-                try {
-                    await client.connect();
-                    async function updateListingByName_B_1(client, nameOfListing) {
-                        const result = await client.db("sample_questions").collection("questions").updateOne({ _id: nameOfListing }, { $set: {a_vote: currentItem.a_vote} });
-                        console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
+                if(currentIndex == 4 || currentIndex == 5 ){
+                    async function getQuestionsAgain(client){
+                        const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
+                        questions = result;
+                        currentIndex = 0;
+    
+                        console.log("new questions are ready");
                     }
-                    await updateListingByName_B_1(client, questions[currentIndex]._id);
-
-
-                    var randGameOverText = "";
-                    async function getRandGameOverMessage(client){
-                        const result = await client.db("sample_questions").collection("gameover_message").aggregate([{ $sample: { size: 1 } }]).toArray();
-                        rand_gameover_message = result;
-                    }
-            
-                    await getRandGameOverMessage(client);
-
-                    res.setHeader('Content-Type', 'text/html');
-                    res.render('gameover', {something: score, message: rand_gameover_message[0].message_text});
-
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    await client.close();
+                    await getQuestionsAgain(client);
                 }
-            }
-            await updateOneDocByID_B_Wrong().catch(console.error);
 
+
+            } catch (e) {
+                console.error(e);
+            } finally {
+                await client.close();
+            }
         }
-
-    }
-
-
-    if(userSelectedOpt == currentItem.opt_b){
-        //B Selected
-        if(currentItem.b_vote >= currentItem.a_vote){
-            //Correct
-            score = score + 1;
-            currentItem.b_vote = currentItem.b_vote + 1;
+        await updateOneDocByID().catch(console.error);
 
 
-            async function updateOneDocByID_B_Right() {
-
-                try {
-                    await client.connect();
-                    async function updateListingByName_B_2(client, nameOfListing) {
-                        const result = await client.db("sample_questions").collection("questions").updateOne({ _id: nameOfListing }, { $set: {b_vote: currentItem.b_vote} });
-                        console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
-                    }
-                    await updateListingByName_B_2(client, questions[currentIndex]._id);
-
-
-                    currentIndex = currentIndex + 1;
-                    res.render("index", {questions, something: score, q: currentIndex});
-
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    await client.close();
-                }
-            }
             
-             updateOneDocByID_B_Right().catch(console.error);
-
-            /*
-             if(currentIndex == 4 || currentIndex == 5 ){
-                async function getQuestionsAgain(client){
-                    const result = await client.db("sample_questions").collection("questions").aggregate([{ $sample: { size: 5 } }]).toArray();
-                    questions = result;
-                    currentIndex = 0;
-                    console.log("new questions are ready");
-                }
-                 await getQuestionsAgain(client);
-            }
-            */
-
-
-
-
-
-        }else{
-            //WRONG
-            currentItem.b_vote = currentItem.b_vote + 1;
-            async function updateOneDocByID_B_adam() {
-                try {
-                    await client.connect();
-                    async function updateListingByName_B_c(client, nameOfListing) {
-                        const result = await client.db("sample_questions").collection("questions").updateOne({ _id: nameOfListing }, { $set: {b_vote: currentItem.b_vote} });
-                        console.log(`${result.matchedCount} document(s) matched the query criteria.`);console.log(`${result.modifiedCount} document(s) was/were updated.`);
-                    }
-                    await updateListingByName_B_c(client, questions[currentIndex]._id);
-
-
-                    var randGameOverText = "";
-                    async function getRandGameOverMessage(client){
-                        const result = await client.db("sample_questions").collection("gameover_message").aggregate([{ $sample: { size: 1 } }]).toArray();
-                        randGameOverText = result;
-                    }
             
-                    await getRandGameOverMessage(client);
-
-                    res.setHeader('Content-Type', 'text/html');
-                    res.render('gameover', {something: score, message: randGameOverText[0].message_text});
-
-                } catch (e) {
-                    console.error(e);
-                } finally {
-                    await client.close();
-                }
-            }
-            await updateOneDocByID_B_adam().catch(console.error);
-        }
-
-    }
-
-
-
-
-
-
+            
 
 
 
